@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # local apps
+    # local apps - organized alphabetically by default
+    'jokes.apps.JokesConfig', 
     'pages.apps.PagesConfig',
 ]
 
