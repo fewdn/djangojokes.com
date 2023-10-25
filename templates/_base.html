@@ -10,7 +10,7 @@
 <body>
 <header>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Django Jokes</a>
+    <a class="navbar-brand" href="{% url 'pages:homepage' %}">Django Jokes</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse"
       data-target="#navbarSupportedContent" aria-expanded="false"
       aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
@@ -20,15 +20,15 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home 
+          <a class="nav-link" href="{% url 'pages:homepage' %}">Home 
             <span class="sr-only">(current)</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Jokes</a>
+          <a class="nav-link" href="/jokes/">Jokes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Log in</a>
+          <a class="nav-link" href="/account/login/">Log in</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
@@ -62,8 +62,8 @@
       <div class="float-end m-1 me-2">Copyright &copy; 2022 Django Jokes.</div>
       <nav>
         <ul class="nav">
-          <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'pages:about-us' %}">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'pages:contact-us' %}">Contact</a></li>
         </ul>
       </nav>
     </div>
