@@ -25,7 +25,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/jokes/">Jokes</a>
+          <a class="nav-link" href="{% url 'jokes:list' %}">Jokes</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/account/login/">Log in</a>
@@ -63,7 +63,7 @@
       <nav>
         <ul class="nav">
           <li class="nav-item"><a class="nav-link" href="{% url 'pages:about-us' %}">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% url 'pages:contact-us' %}">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
         </ul>
       </nav>
     </div>
