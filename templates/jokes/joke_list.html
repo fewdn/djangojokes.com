@@ -1,11 +1,16 @@
 {% extends '_base.html' %}
 {% block title %}Jokes{% endblock %}
 {% block main %}
+    <a class="btn btn-success btn-sm float-end" href="{% url 'jokes:create' %}">
+        + New Joke
+    </a>
     <h2>Jokes</h2>
     <ul class="list-group list-group-flush mb-3">
         {% for joke in joke_list %}
             <li class="list-group-item">
                 <a href="{{ joke.get_absolute_url }}">{{ joke.question }}</a>
+                <a href="{% url 'jokes:update' joke.pk %}"
+                  class="btn btn-info btn-sm float-end me-2">Update</a>
             </li>
         {% endfor %}
     </ul>

@@ -1,0 +1,15 @@
+{% extends '_base.html' %}
+
+{% block title %}Add/Update Joke{% endblock %}
+{% block main %}
+  <div class="card border-primary m-auto mb-3 p-3"
+    style="max-width: 30rem">
+    <form method="post">
+        {% csrf_token %}
+        <table class="table">
+          {{ form.as_table }}
+        </table>
+        <button class="btn btn-success float-end">Submit</button>
+    </form>
+  </div>
+{% endblock %}
