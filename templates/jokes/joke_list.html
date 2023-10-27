@@ -4,7 +4,9 @@
     <h2>Jokes</h2>
     <ul class="list-group list-group-flush mb-3">
         {% for joke in joke_list %}
-            <li class="list-group-item">{{ joke.question }}</li>
+            <li class="list-group-item">
+                <a href="{% url 'jokes:detail' joke.pk %}">{{ joke.question }}</a>
+            </li>
         {% endfor %}
     </ul>
 {% endblock %}
