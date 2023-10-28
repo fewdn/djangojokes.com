@@ -11,6 +11,8 @@
                 <a href="{{ joke.get_absolute_url }}">{{ joke.question }}</a>
                 <a href="{% url 'jokes:update' joke.pk %}"
                   class="btn btn-info btn-sm float-end me-2">Update</a>
+                <a href="{% url 'jokes:delete' joke.pk %}"
+                  class="btn btn-danger btn-sm float-end me-2">Delete</a>
             </li>
         {% endfor %}
     </ul>
