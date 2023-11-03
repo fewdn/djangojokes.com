@@ -17,6 +17,6 @@ class JokeAdmin(admin.ModelAdmin):
     # Using the getter function checks to see if the object exists
     def get_readonly_fields(self, request, obj=None):
         if obj:
-            return ('created', 'updated')   # If editing created,updated is returned
+            return ('slug', 'created', 'updated')   # If editing created,updated is returned
         
         return ()  # If creating a new joke an empty tuple is returned, indicating there are no readonly fields
