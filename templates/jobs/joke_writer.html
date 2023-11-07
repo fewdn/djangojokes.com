@@ -4,7 +4,7 @@
 {% block main %}
   <h2 class="text-center">Joke Writer Application</h2>
   <div class="card border-primary m-auto mb-3 p-3" style="max-width: 40rem">
-    <form method="post">
+    <form method="post" novalidate> <!-- remove novalidate for production -->
         {% csrf_token %}
         {{ form.as_p }}
         <button class="btn btn-success float-end">Apply</button>

@@ -26,6 +26,7 @@ class JobAppView(FormView):
         content += '</ol>'
 
         # send_email(to, subject, content)  ATTN: I did not create a SendGrid account or email function
+        print(content)
         return super().form_valid(form)
 
 class JobAppThanksView(TemplateView):
