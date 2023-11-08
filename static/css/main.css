@@ -13,3 +13,18 @@ header {
 h2 {
   font-style: italic;
 }
+
+/* FORM STYLES */
+label {
+    font-variant: small-caps;
+}
+
+.form-check {
+    display: inline-block;
+    font-weight: normal;
+    margin: 0 1rem;
+}
+
+#div_id_start_date > label {
+    display: block;
+}
