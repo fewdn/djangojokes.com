@@ -5,7 +5,7 @@ from .models import Joke
 class JokeForm(ModelForm):
     class Meta:
         model = Joke
-        fields = ['question', 'answer']
+        fields = ['question', 'answer', 'category']
         widgets = {
             'question': Textarea(
                 attrs={'cols': 80, 'rows': 3, 'autofocus': True}
