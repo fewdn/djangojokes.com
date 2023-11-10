@@ -9,6 +9,18 @@
     <h5 class="card-title">{{ joke.answer }}</h5>
   </div>
   <div class="card-footer">
+    <div class="border-bottom border-faded pb-2">
+        <strong>Category:</strong> {{ joke.category.category }}<br>
+        {% for tag in joke.tags.all %}
+          <span class="badge rounded-pill bg-secondary">{{ tag.tag }}</span>
+        {% endfor %}
+    </div>
+    <div class="border-bottom border-faded m-2 pb-2">
+        <a href="{% url 'jokes:update' joke.slug %}"
+          class="btn btn-info btn-sm me-2">Update</a>
+        <a href="{% url 'jokes:delete' joke.slug %}"
+          class="btn btn-danger btn-sm me-2">Delete</a>
+    </div>
     <small class="text-muted">
       Created on: {{ joke.created }}
       Last updated: {{ joke.updated }}
