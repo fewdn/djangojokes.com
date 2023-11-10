@@ -4,14 +4,19 @@
 {% block title %}Job Application: Joke Writer{% endblock %}
 {% block main %}
   <h2 class="text-center">Joke Writer Application</h2>
-  <div class="card border-primary m-auto mb-3 p-3" style="max-width: 50rem">
+  <div class="card border-primary m-auto mb-0 p-3" style="max-width: 50rem">
     <form method="post" novalidate>
       {% csrf_token %}
+      <div class="row">
+        <div class="col-md-6">
+          {{ form.job|as_crispy_field }}
+        </div>
+      </div>
       <div class="row">
         <div class="col-md-6 mb-0">
           {{ form.first_name|as_crispy_field }}
         </div>
-        <div class="col-md-6 mb-0">
+        <div  class="col-md-6 mb-0">
           {{ form.last_name|as_crispy_field }}
         </div>
       </div>
@@ -24,20 +29,20 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6 mb-0">
-          {{ form.employment_type|as_crispy_field }}
-        </div>
-        <div class="col-md-6 mb-0">
-          {{ form.start_date|as_crispy_field }}
-        </div>
+          <div class="col-md-5 mb-0">
+            {{ form.employment_type|as_crispy_field }}
+          </div>
+          <div class="col-md-7 mb-0">
+            {{ form.start_date|as_crispy_field }}
+          </div>
       </div>
       <div class="row">
-        <div class="col-md-8 mb-0">
-          {{ form.available_days|as_crispy_field  }}
-        </div>
-        <div class="col-md-4 mb-0">
-          {{ form.desired_hourly_wage|as_crispy_field }}
-        </div>
+          <div class="form-check col-md-8 mb-0">
+            {{ form.available_days|as_crispy_field  }}
+          </div>
+          <div class="col-md-2 mb-0">
+            {{ form.desired_hourly_wage|as_crispy_field }}
+          </div>
       </div>
       {{ form.cover_letter|as_crispy_field }}
       {{ form.confirmation|as_crispy_field }}
