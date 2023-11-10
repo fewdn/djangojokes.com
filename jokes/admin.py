@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Category, Joke
+from .models import Category, Joke, Tag
 
 # Register your models here.
 @admin.register(Category)
@@ -31,3 +31,14 @@ class JokeAdmin(admin.ModelAdmin):
             return ('slug', 'created', 'updated')   # If editing created,updated is returned
         
         return ()  # If creating a new joke an empty tuple is returned, indicating there are no readonly fields
+    
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    model = Tag
+    list_display = ['tag', 'created', 'updated']
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj: # editing an existing object
+            return ('slug', 'created', 'updated')
+        return()
