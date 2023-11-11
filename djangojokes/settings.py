@@ -117,7 +117,7 @@ DATABASES = {
 # EMAIL_PORT = 587
 # EMAIL_USE_TLS = True
 # EMAIL_HOST_USER = 'apikey'
-# EMAIL_HOST_PASSWORD = SENDGRID_API_KEY   # If you setup SendGrid earliear, move this to local_settings.py
+# EMAIL_HOST_PASSWORD = SENDGRID_API_KEY   # If you setup SendGrid earlier, move this to local_settings.py
 # DEFAULT_FROM_EMAIL = 'admin@example.com'
 
 AUTHENTICATION_BACKENDS = (
