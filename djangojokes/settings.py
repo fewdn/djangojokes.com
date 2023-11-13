@@ -119,6 +119,7 @@ DATABASES = {
 # EMAIL_HOST_USER = 'apikey'
 # EMAIL_HOST_PASSWORD = SENDGRID_API_KEY   # If you setup SendGrid earlier, move this to local_settings.py
 # DEFAULT_FROM_EMAIL = 'admin@example.com'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Prints verify url to console instead of using SendGrid
 
 AUTHENTICATION_BACKENDS = (
     # Needed to Login by username in Django admin, even w/o 'alluser'
