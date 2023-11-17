@@ -25,6 +25,7 @@ label {
     margin: 0 1rem;
 }
 
-#div_id_start_date > label {
+#div_id_start_date > label,
+#div_id_dob > label {
     display: block;
 }
