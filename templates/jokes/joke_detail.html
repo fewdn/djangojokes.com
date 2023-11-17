@@ -1,5 +1,4 @@
 {% extends '_base.html' %}
-
 {% block title %}Joke{% endblock %}
 {% block main %}
 <div class="card border-primary m-auto mb-3 text-center"
@@ -22,7 +21,7 @@
           class="btn btn-danger btn-sm me-2">Delete</a>
     </div>
     <small class="text-muted">
-      Created on: {{ joke.created }}
+      Created on: {{ joke.created }} by {{ joke.user.username }}
       Last updated: {{ joke.updated }}
     </small>
   </div>
