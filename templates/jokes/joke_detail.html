@@ -14,12 +14,14 @@
           <span class="badge rounded-pill bg-secondary">{{ tag.tag }}</span>
         {% endfor %}
     </div>
-    <div class="border-bottom border-faded m-2 pb-2">
+    {% if joke.user == user %}
+      <div class="border-bottom border-faded m-2 pb-2">
         <a href="{% url 'jokes:update' joke.slug %}"
           class="btn btn-info btn-sm me-2">Update</a>
         <a href="{% url 'jokes:delete' joke.slug %}"
           class="btn btn-danger btn-sm me-2">Delete</a>
-    </div>
+      </div>
+    {% endif %}
     <small class="text-muted">
       Created on: {{ joke.created }} by {{ joke.user.username }}
       Last updated: {{ joke.updated }}
