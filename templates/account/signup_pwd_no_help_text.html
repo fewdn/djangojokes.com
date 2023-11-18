@@ -1,0 +1,33 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Register{% endblock %}
+
+{% block main %}
+<div class="card border-primary m-auto mb-3" style="max-width: 30rem">
+    <div class="card-header text-center">Register</div>
+    <div class="card-body">
+        <form method="post" class="m-auto mb-2">
+            {% csrf_token %}
+            {% for field in form %}
+              {% if field.help_text and field.name == 'password1' %}
+                <div id="div_id_{{field.name|lower}}" class="mb-3">
+                  <label for="id_{{field.name|lower}}" 
+                    class="form-label requiredField">{{field.label}}<span class="asteriskField">*</span>
+                  </label>
+                  <input type="password" name="{{field.name|lower}}" placeholder="Password" 
+                    autocomplete="new-password" class="passwordinput form-control" 
+                    required id="id_{{field.name|lower}}">
+                </div>
+              {% else %}
+                {{ field|as_crispy_field }}
+              {% endif %}
+            {% endfor %}
+            <button class="form-control btn btn-primary">REGISTER</button>
+        </form>
+    </div>
+    <div class="card-footer">
+        Already have an account? <a href="{% url 'account_login' %}">Log in</a>
+    </div>
+</div>
+{% endblock %}
