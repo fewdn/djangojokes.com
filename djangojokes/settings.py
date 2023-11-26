@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Django MESSAGES
+# MESSAGE_LEVEL = 10
 
 # Application definition
 
