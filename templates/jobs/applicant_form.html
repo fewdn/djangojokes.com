@@ -5,7 +5,7 @@
 {% block main %}
   <h2 class="text-center">Joke Writer Application</h2>
   <div class="card border-primary m-auto mb-0 p-3" style="max-width: 50rem">
-    <form method="post" novalidate>
+    <form method="post" novalidate enctype="multipart/form-data">
       {% csrf_token %}
       <div class="row">
         <div class="col-md-6">
@@ -45,6 +45,7 @@
           </div>
       </div>
       {{ form.cover_letter|as_crispy_field }}
+      {{ form.resume|as_crispy_field}}
       {{ form.confirmation|as_crispy_field }}
       <button class="form-control btn btn-success">Apply</button>
     </form>
