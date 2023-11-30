@@ -13,10 +13,7 @@ def validate_future_date(value):
 
 def validate_pdf(value):
     kind = filetype.guess(value)
-    if (not kind 
-        or not hasattr(kind, 'meme') 
-        or kind.meme != 'application/pdf'
-    ):
+    if not kind or kind.mime != 'application/pdf':
         raise ValidationError("That's not a PDF file.")
     
 class Job(models.Model):
