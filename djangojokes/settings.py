@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'private_storage',
 
     # local apps - organized alphabetically by default
     'common.apps.CommonConfig',
@@ -190,6 +191,12 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# private storage settings
+PRIVATE_STORAGE_ROOT = MEDIA_ROOT / 'private'
+PRIVATE_STORAGE_AUTH_FUNCTION = 'private_storage.permissions.allow_staff'
+# PRIVATE_STORAGE_AUTH_FUNCTION = 'private_storage.permissions.allow_authenticated
+# PRIVATE_STORAGE_AUTH_FUNCTION = 'private_storage.permissions.allow_superuser
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
