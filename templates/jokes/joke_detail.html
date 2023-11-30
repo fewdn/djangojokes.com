@@ -23,6 +23,10 @@
       </div>
     {% endif %}
     <small class="text-muted">
+      {% if joke.user.avatar %}
+        <img src="{{ joke.user.avatar.url }}" alt="{{ joke.user.username }}"
+          class="mt-1 rounded float-end" width="50" height="50">
+      {% endif %}
       Created on: {{ joke.created }} by {{ joke.user.username }}
       Last updated: {{ joke.updated }}
     </small>

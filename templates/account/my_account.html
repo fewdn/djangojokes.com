@@ -7,6 +7,10 @@
 <div class="card border-primary m-auto mb-3" style="max-width: 30rem">
   <div class="card-header text-center">My Account</div>
   <div class="card-body">
+    {% if user.avatar and not form.avatar.errors %}
+      <img src="{{ user.avatar.url }}" alt="Avatar"
+        class="img-thumbnail mx-auto d-block"/>
+    {% endif %}
     <form method="post" enctype="multipart/form-data" class="m-auto" novalidate>
       {% csrf_token %}
       {{ form|crispy }}
