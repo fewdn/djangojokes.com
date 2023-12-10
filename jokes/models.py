@@ -11,7 +11,7 @@ class Joke(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.PROTECT
     )
     # If Category class does not come before Joke class, use a string ForeignKey('Category',...)
-    category = models.ForeignKey('Category', on_delete=models.PROTECT)
+    category = models.ForeignKey('Category', on_delete=models.PROTECT, related_name='jokes')
     #many-to-many fields are required, use blank=True to make it optional
     tags = models.ManyToManyField('Tag', blank=True) 
     slug = models.SlugField(
