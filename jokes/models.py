@@ -11,9 +11,13 @@ class Joke(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.PROTECT
     )
     # If Category class does not come before Joke class, use a string ForeignKey('Category',...)
+    # By default a related manager uses sometag.<name>_set 
+    # sometag.joke_set on a Tag would return the related manager for jokes with that tag
+    # Specifying a name for the related manager can help with clarity. Using related_name="jokes"
+    #   turns sometag.joke_set   into   sometag.jokes  when accessing the related manager
     category = models.ForeignKey('Category', on_delete=models.PROTECT, related_name='jokes')
     #many-to-many fields are required, use blank=True to make it optional
-    tags = models.ManyToManyField('Tag', blank=True) 
+    tags = models.ManyToManyField('Tag', blank=True, related_name='jokes') 
     slug = models.SlugField(
         max_length=50, unique=True, null=False, editable=False
     )
