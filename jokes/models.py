@@ -8,7 +8,8 @@ class Joke(models.Model):
     question = models.TextField(max_length=200)
     answer = models.TextField(max_length=100, blank=True)
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.PROTECT
+        settings.AUTH_USER_MODEL, on_delete=models.PROTECT,
+        related_name="jokes"
     )
     # If Category class does not come before Joke class, use a string ForeignKey('Category',...)
     # By default a related manager uses sometag.<name>_set 
