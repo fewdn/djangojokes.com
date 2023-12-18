@@ -4,7 +4,17 @@
     <a class="btn btn-success btn-sm float-end" href="{% url 'jokes:create' %}">
         + New Joke
     </a>
-    <h2>Jokes</h2>
+    <h2>Jokes <span style="font-size:1rem;">
+        {% for item in joke_list %}
+          {% if forloop.first %}
+            {{item.id}}
+          {% endif%}
+          {% if forloop.last %}
+          - {{ item.id }}
+          {% endif %}
+        {% endfor %}
+        of {{ page_obj.paginator.count }} total. Page {{ page_obj.number }} has {{ joke_list.count }} jokes</span>
+    </h2>
     <div class="table-responsive">
       <table class="table table-striped" style="min-width: 500px">
         <thead>
@@ -43,5 +53,5 @@
         </tbody>
       </table>
     </div>
-     
+    {% include 'includes/pagination.html' %}
 {% endblock %}

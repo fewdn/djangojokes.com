@@ -43,6 +43,7 @@ class JokeDetailView(DetailView):
     
 class JokeListView(ListView):
     model = Joke
+    paginate_by = 10
 
 class JokeUpdateView(SuccessMessageMixin, UserPassesTestMixin, UpdateView):
     model = Joke
