@@ -1,27 +1,69 @@
 {% extends '_base.html' %}
 {% block title %}Jokes{% endblock %}
 {% block main %}
-    <a class="btn btn-success btn-sm float-end" href="{% url 'jokes:create' %}">
+<div class="row">
+    <div class="col-12 col-md-2 col-lg-3">
+      <h2>Jokes</h2>
+    </div>
+    <div class="col-12 col-md-8 col-lg-6">
+      <form class="my-2 mx-auto" style="max-width: 30rem;">
+        <label class="my-1 me-2" for="order">Order By:</label>
+        <select class="form-control me-sm-2" name="order" id="order">
+          {% for field in order_fields %}
+            <option value="{{ field }}"
+              {% if order == field %}selected{% endif %}
+            >{{ field|title }}</option>
+          {% endfor %}
+        </select>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="direction" 
+            id="asc" value="asc"
+            {% if direction == 'asc' %}checked{% endif %}
+          >
+          <label class="form-check-label" for="asc">ASC</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="direction"
+            id="desc" value="desc"
+            {% if direction == 'desc' %}checked{% endif %}
+          >
+          <label class="form-check-label" for="desc">DESC</label>
+        </div>
+        <button class="btn btn-primary btn-sm m-2" type="submit">
+          Sort
+        </button>
+      </form>
+    </div>
+    <div class="col-12 col-md-2 col-lg-3 text-end">
+      <a class="btn btn-success btn-sm m-2" href="{% url 'jokes:create' %}">
         + New Joke
-    </a>
-    <h2>Jokes <span style="font-size:1rem;">
-        {% for item in joke_list %}
-          {% if forloop.first %}
-            {{item.id}}
-          {% endif%}
-          {% if forloop.last %}
-          - {{ item.id }}
-          {% endif %}
-        {% endfor %}
-        of {{ page_obj.paginator.count }} total. Page {{ page_obj.number }} has {{ joke_list.count }} jokes</span>
-    </h2>
-    <div class="table-responsive">
-      <table class="table table-striped" style="min-width: 500px">
-        <thead>
+      </a>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped" style="min-width: 500px">
+      <thead>
+        {% with order=request.GET.order dir=request.GET.direction %}
           <tr>
-            <th>Joke</th><th>Category</th><th>Creator</th>
+            {% if order == 'joke' and dir == 'asc' %}
+              <th><a href="?order=joke&direction=desc">Joke</a></th>
+            {% else %}
+              <th><a href="?order=joke&direction=asc">Joke</a></th>
+            {% endif %}
+            {% if order == 'category' and dir == 'asc' %}
+              <th><a href="?order=category&direction=desc">Category</a></th>
+            {% else %}
+              <th><a href="?order=category&direction=asc">Category</a></th>
+            {% endif %}
+            {% if order == 'creator' and dir == 'asc' %}
+              <th><a href="?order=creator&direction=desc">Creator</a></th>
+            {% else %}
+              <th><a href="?order=creator&direction=asc">Creator</a></th>
+            {% endif %}
           </tr>
-        </thead>
+        {% endwith %}
+      </thead>
         <tbody>
           {% for joke in joke_list %}
             <tr>
