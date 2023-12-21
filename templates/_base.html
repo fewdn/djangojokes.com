@@ -56,9 +56,10 @@
           </li>
         {% endif %}
       </ul>
-      <form class="row my-2 my-lg-0 row">
+      <form class="row my-2 my-lg-0 row" action="{% url 'jokes:list' %}">
+        {% csrf_token %}
         <input class="form-control me-sm-2 col" type="search"
-        placeholder="Search" aria-label="Search">
+        placeholder="Search" aria-label="Search" name="q" value="{{ request.GET.q }}">
         <button class="btn btn-outline-success my-2 my-sm-0 me-4 col" type="submit">
           Search
         </button>

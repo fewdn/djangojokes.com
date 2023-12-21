@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.views.generic import (
     CreateView, DeleteView, DetailView, ListView, UpdateView
 )
+from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
@@ -95,6 +96,12 @@ class JokeListView(ListView):
     def get_queryset(self):
         ordering = self.get_ordering()
         qs = Joke.objects.all()
+
+        if 'q' in self.request.GET: # Filter by search query
+            q = self.request.GET.get('q')
+            qs = qs.filter(
+                Q(question__icontains=q) | Q(answer__icontains=q)
+            )
 
         if 'slug' in self.kwargs: # Filter by category or tag
             slug = self.kwargs['slug']

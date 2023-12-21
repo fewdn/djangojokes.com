@@ -3,7 +3,7 @@
 {% block main %}
 <div class="row">
     <div class="col-12 col-md-2 col-lg-3">
-      <h2>Jokes</h2>
+      <h2>Jokes</h2><span>count: {{ page_obj.paginator.count }}</span>
     </div>
     <div class="col-12 col-md-8 col-lg-6">
       <form class="my-2 mx-auto" style="max-width: 30rem;">
