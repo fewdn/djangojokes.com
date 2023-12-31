@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+INTERNAL_IPS = [ # Necessary for the Debug Toolbar
+    '127.0.0.1',
+]
 # Django MESSAGES
 # MESSAGE_LEVEL = 10
 
@@ -48,6 +51,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'debug_toolbar',
     # 'private_storage',
 
     # local apps - organized alphabetically by default
@@ -65,6 +69,9 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 MIDDLEWARE = [
+    # Third party - The Debug Toolbar
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+
     # Built in
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
