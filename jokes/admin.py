@@ -1,6 +1,7 @@
 from django.contrib import admin
 
 from .models import Category, Joke, JokeVote, Tag
+from common.admin import DjangoJokesAdmin
 
 # Register your models here.
 @admin.register(Category)
@@ -15,7 +16,7 @@ class CategoryAdmin(admin.ModelAdmin):
     
 
 @admin.register(Joke)
-class JokeAdmin(admin.ModelAdmin):
+class JokeAdmin(DjangoJokesAdmin): #use custom admin instead of admin.ModelAdmin
     model = Joke
     # list_display is not required but without it all rows have a single column (string value of model class)
     # Using it, sets column headings in Django's web admin interface
