@@ -20,11 +20,16 @@ class JokeAdmin(DjangoJokesAdmin): #use custom admin instead of admin.ModelAdmin
     model = Joke
     # list_display is not required but without it all rows have a single column (string value of model class)
     # Using it, sets column headings in Django's web admin interface
+    # List Attributes
     date_hierarchy = 'updated'
     list_display = ['question', 'created', 'updated']  # fields that will show in Django admin, rows of jokes   
     list_filter = ['updated', 'category', 'tags']
     ordering = ['-updated']
     search_fields = ['question', 'answer']  # search box text will search these fields for a match
+    
+    # Form Attributes
+    autocomplete_fields = ['tags', 'user']  # requires search_fields in TagAdmin as its referenced by JokeAdmin (error if not)
+    radio_fields = {'category': admin.HORIZONTAL}
 
     # readonly_fields holds field that you can read but NOT EDIT
     # An alternative syntax is using that attribute readonly_fields = ('created', 'updated')
@@ -51,6 +56,7 @@ class JokeVoteAdmin(DjangoJokesAdmin): #use custom admin instead of admin.ModelA
 class TagAdmin(DjangoJokesAdmin): #use custom admin instead of admin.ModelAdmin
     model = Tag
     list_display = ['tag', 'created', 'updated']
+    search_fields = ['tag']
 
     def get_readonly_fields(self, request, obj=None):
         if obj: # editing an existing object
