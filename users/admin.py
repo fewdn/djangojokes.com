@@ -3,6 +3,9 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 from common.admin import DjangoJokesAdmin
 from common.utils.admin import append_fields, move_fields, remove_fields
+from django.utils.safestring import mark_safe
+from django.urls import reverse
+from allauth.socialaccount.models import SocialApp, SocialAccount, SocialToken
 
 # Register your models here.
 CustomUser = get_user_model()
@@ -22,6 +25,9 @@ class CustomUserAdmin(DjangoJokesAdmin, UserAdmin):
     list_display = UserAdmin.list_display + ('is_superuser',)
     list_display_links = ('username', 'email', 'first_name', 'last_name')
 
+    # Read-only fields
+    readonly_fields = ['password_form']
+
     # Fields for editing existing user
     new_fields = ('dob', 'avatar')
     # Add new fields to "Personal info" fieldset
@@ -30,6 +36,7 @@ class CustomUserAdmin(DjangoJokesAdmin, UserAdmin):
     move_fields(UserAdmin.fieldsets, 'Personal info', None, ('email',))
     # Remove password field
     remove_fields(UserAdmin.fieldsets, None, ('password',))
+    append_fields(UserAdmin.fieldsets, None, ('password_form',))
 
     # Fields for adding new user
     new_fields = ('email',)
@@ -44,3 +51,12 @@ class CustomUserAdmin(DjangoJokesAdmin, UserAdmin):
     def get_form(self, request, obj=None, **kwargs):
         self.save_on_top = obj is not None
         return super().get_form(request, obj, **kwargs)
+    
+    def password_form(self, obj):
+        url = reverse('admin:auth_user_password_change', args=[obj.pk])
+        return mark_safe(f'<a href="{url}">Change Password</a>')
+    
+    # Unregister these apps to remove Social Accounts section from Django Admin
+    admin.site.unregister(SocialApp)
+    admin.site.unregister(SocialAccount)
+    admin.site.unregister(SocialToken)

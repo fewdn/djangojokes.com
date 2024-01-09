@@ -38,9 +38,13 @@ class JokeAdmin(DjangoJokesAdmin): #use custom admin instead of admin.ModelAdmin
     # Using the getter function checks to see if the object exists
     def get_readonly_fields(self, request, obj=None):
         if obj:
-            return ('slug', 'created', 'updated')   # If editing created,updated is returned
+            return ('slug', 'created', 'updated', 'vote_summary')   # If editing created,updated is returned
         
         return ()  # If creating a new joke an empty tuple is returned, indicating there are no readonly fields
+    
+    # Add a read-only "votes_summary" field to a joke Change form
+    def vote_summary(self, obj):
+        return f'{obj.num_votes} votes. Rating: {obj.rating}'
     
 @admin.register(JokeVote)
 class JokeVoteAdmin(DjangoJokesAdmin): #use custom admin instead of admin.ModelAdmin 
